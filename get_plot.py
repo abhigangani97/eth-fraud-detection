@@ -51,6 +51,11 @@ def generate_transaction_count_plot(address_data):
     plt.figure(figsize=(15, 6), facecolor=background_color)
     ax = plt.gca()
     ax.set_facecolor(background_color)
+    
+    for spine in ax.spines.values():
+    	spine.set_edgecolor('red')
+    
+    
     bars = plt.bar(unique_dates, transaction_counts, color=bar_colors)
     plt.xlabel('Date', color=text_color)
     plt.ylabel('Transaction Count', color=text_color)
@@ -68,11 +73,14 @@ def generate_transaction_count_plot(address_data):
     sm = plt.cm.ScalarMappable(cmap=cmap, norm=plt.Normalize(vmin=0, vmax=len(unique_dates)-1))
     sm.set_array([])  # Fake a scalar to create the colorbar
     cbar = plt.colorbar(sm, ax=ax)
-    cbar.set_label('Date Color')
+    cbar.set_label('Date Color', color='white')
+    
+    for label in cbar.ax.yaxis.get_ticklabels():
+    	label.set_color('white')
 
     # Save the plot as bytes in memory
     buffer = BytesIO()
-    plt.savefig(buffer, format='png', bbox_inches='tight', transparent=True)
+    plt.savefig(buffer, format='png', bbox_inches='tight', transparent=True, edgecolor='red')
     buffer.seek(0)
 
     # Encode the plot as base64
@@ -87,3 +95,4 @@ if __name__ == '__main__':
     transaction_count_plot = generate_transaction_count_plot(transactions_data)
     # You can return this plot in your route handler
     pass
+    
