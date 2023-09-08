@@ -48,7 +48,7 @@ def generate_transaction_count_plot(address_data):
     cmap = plt.get_cmap('viridis')  # You can choose any colormap
     bar_colors = cmap(np.linspace(0, 1, len(unique_dates)))
 
-    plt.figure(figsize=(15, 6), facecolor=background_color, transparent=True)
+    plt.figure(figsize=(15, 6), facecolor=background_color)
     ax = plt.gca()
     ax.set_facecolor(background_color)
     bars = plt.bar(unique_dates, transaction_counts, color=bar_colors)
@@ -72,7 +72,7 @@ def generate_transaction_count_plot(address_data):
 
     # Save the plot as bytes in memory
     buffer = BytesIO()
-    plt.savefig(buffer, format='png', bbox_inches='tight', transparent=True)
+    plt.savefig(buffer, format='png', bbox_inches='tight')
     buffer.seek(0)
 
     # Encode the plot as base64
