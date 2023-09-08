@@ -83,7 +83,7 @@ def generate_transaction_count_plot(address_data):
 
 if __name__ == '__main__':
     # Example usage:
-    transactions_data = get_all_transactions_address("example_address")
+    transactions_data = get_all_transactions_address(address)
     transaction_count_plot = generate_transaction_count_plot(transactions_data)
     # You can return this plot in your route handler
     pass
