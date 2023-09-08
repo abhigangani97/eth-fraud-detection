@@ -40,8 +40,16 @@
             width: 100px;
             float: left;
         }
-        .form-container button {
+        ..styled-button {
             float: left;
+            background-color: #555;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+        .styled-button:hover {
+            background-color: #333;
         }
         .clearfix::after {
             content: "";
@@ -52,7 +60,7 @@
 </head>
 <body>
 
-<button form="fetch_transactions_form">Fetch Latest Transactions</button>
+<button form="fetch_transactions_form" class="styled-button">Fetch Latest Transactions</button>
 <form id="fetch_transactions_form" method="post">
     <input type="hidden" name="fetch_transactions">
 </form>
@@ -62,7 +70,7 @@
         <form method="post">
             <label for="address">Enter Address to predict:</label>
             <input type="text" id="address" name="address" required>
-            <button type="submit" name="enter_address">Check Address</button>
+            <button type="submit" name="enter_address" class="styled-button" >Check Address</button>
         </form>
     </div>
 
@@ -70,7 +78,7 @@
         <form method="post">
             <label for="hash">Enter Hash to predict:</label>
             <input type="text" id="hash" name="hash" required>
-            <button type="submit" name="enter_hash">Check Hash</button>
+            <button type="submit" name="enter_hash" class="styled-button">Check Hash</button>
         </form>
     </div>
 
@@ -78,7 +86,7 @@
         <form method="post">
             <label for="address_50">Fetch Address Transactions:</label>
             <input type="text" id="address_50" name="address_50" required>
-            <button type="submit" name="enter_address_50">Fetch Transactions</button>
+            <button type="submit" name="enter_address_50" class="styled-button">Fetch Transactions</button>
         </form>
     </div>
 
@@ -86,7 +94,7 @@
         <form method="post">
             <label for="transaction_count_address">Temporal Transaction Count:</label>
             <input type="text" id="transaction_count_address" name="transaction_count_address" required>
-            <button type="submit" name="generate_transaction_count">Generate Graph</button>
+            <button type="submit" name="generate_transaction_count" class="styled-button">Generate Graph</button>
         </form>
     </div>
 </div>
