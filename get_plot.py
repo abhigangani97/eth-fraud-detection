@@ -43,8 +43,8 @@ def generate_transaction_count_plot(address_data):
     transaction_counts = [timestamps.count(date) for date in unique_dates]
 
     # Set the custom colors using a colormap
-    background_color = 'black'
-    text_color = 'white'
+    background_color = 'white'
+    text_color = 'black'
     cmap = plt.get_cmap('viridis')  # You can choose any colormap
     bar_colors = cmap(np.linspace(0, 1, len(unique_dates)))
 
