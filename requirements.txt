@@ -7,4 +7,4 @@ scikit-learn==1.2.2
 scipy>=1.6.0
 xgboost
 matplotlib
-seabron
+seaborn==0.11.2
