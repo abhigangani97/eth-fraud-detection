@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <title>Ethereum Transactions</title>
     <style>
-    	body {
+        body {
             background-image: url('https://www.securities.io/wp-content/uploads/2022/04/Ethereum-Featured-3.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            color: #ffffff;
-        }
-        button {
-            background-color: grey;
             color: #ffffff;
         }
         table {
@@ -26,13 +22,31 @@
         }
         th {
             background-color: #f2f2f2;
-            color: #000000; 
+            color: #000000;
         }
         form {
             margin-bottom: 20px;
         }
-        input {
-            background-color: #ffffff;
+        .form-container {
+            width: 300px;
+            margin-bottom: 20px;
+        }
+        .form-container label {
+            display: block;
+            width: 200px;
+            float: left;
+        }
+        .form-container input[type="text"] {
+            width: 100px;
+            float: left;
+        }
+        .form-container button {
+            float: left;
+        }
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
         }
     </style>
 </head>
@@ -44,18 +58,40 @@
 </form>
 
 <div style="float:right;">
-    <form method="post">
-        <label for="address">Enter Address:</label>
-        <input type="text" id="address" name="address" required>
-        <button type="submit" name="enter_address">Check Address</button>
-    </form>
-    
-    <form method="post">
-        <label for="hash">Enter Hash:</label>
-        <input type="text" id="hash" name="hash" required>
-        <button type="submit" name="enter_hash">Check Hash</button>
-    </form>
+    <div class="form-container">
+        <form method="post">
+            <label for="address">Enter Address to predict:</label>
+            <input type="text" id="address" name="address" required>
+            <button type="submit" name="enter_address">Check Address</button>
+        </form>
+    </div>
+
+    <div class="form-container">
+        <form method="post">
+            <label for="hash">Enter Hash to predict:</label>
+            <input type="text" id="hash" name="hash" required>
+            <button type="submit" name="enter_hash">Check Hash</button>
+        </form>
+    </div>
+
+    <div class="form-container">
+        <form method="post">
+            <label for="address_50">Fetch Address Transactions:</label>
+            <input type="text" id="address_50" name="address_50" required>
+            <button type="submit" name="enter_address_50">Fetch Transactions</button>
+        </form>
+    </div>
+
+    <div class="form-container">
+        <form method="post">
+            <label for="transaction_count_address">Temporal Transaction Count:</label>
+            <input type="text" id="transaction_count_address" name="transaction_count_address" required>
+            <button type="submit" name="generate_transaction_count">Generate Graph</button>
+        </form>
+    </div>
 </div>
+
+<!-- Rest of the HTML content -->
 
 
 {% if transactions %}
@@ -126,6 +162,31 @@
     {% else %}
         <p>Invalid Prediction...! Try a different transaction.</p>
     {% endif %}
+{% endif %}
+
+{% if past_50_transactions %}
+    <h2>Past 50 Transactions for the Address:</h2>
+    <table>
+        <tr>
+            <th>Transaction Hash</th>
+            <th>Value</th>
+            <th>Gas Price</th>
+            <th>Timestamp</th>
+        </tr>
+        {% for tx in past_50_transactions %}
+        <tr>
+            <td>{{ tx['hash'] }}</td>
+            <td>{{ tx['value'] }}</td>
+            <td>{{ tx['gasPrice'] }}</td>
+            <td>{{ tx['timestamp'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+{% if transaction_count_plot %}
+    <h2>Number of Transactions Over Time:</h2>
+    <img src="{{ transaction_count_plot }}" alt="Transaction Count Plot">
 {% endif %}
 
 {% if error_message %}
