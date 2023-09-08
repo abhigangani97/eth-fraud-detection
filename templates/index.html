@@ -5,7 +5,7 @@
     <title>Ethereum Transactions</title>
     <style>
         body {
-            background-image: url('https://www.securities.io/wp-content/uploads/2022/04/Ethereum-Featured-3.jpg');
+            background-image: url('https://wallpapercave.com/wp/wp2322148.png');
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -103,7 +103,6 @@
 </div>
 
 
-
 {% if transactions %}
     <h2>10 Latest Transactional hashes on Ethereum blockchain:</h2>
     <table>
@@ -175,13 +174,14 @@
 {% endif %}
 
 {% if past_50_transactions %}
-    <h2>Past 50 Transactions for the Address:</h2>
+    <h2>Past 10 Transactions for the Address:</h2>
     <table>
         <tr>
             <th>Transaction Hash</th>
             <th>Value</th>
             <th>Gas Price</th>
             <th>Timestamp</th>
+            <th>Prediction</th>
         </tr>
         {% for tx in past_50_transactions %}
         <tr>
@@ -189,10 +189,12 @@
             <td>{{ tx['value'] }}</td>
             <td>{{ tx['gasPrice'] }}</td>
             <td>{{ tx['timestamp'] }}</td>
+            <td>{% if tx['Prediction'] == 0 %}Normal{% elif tx['Prediction'] == 1 %}Fraud{% endif %}</td>
         </tr>
         {% endfor %}
     </table>
 {% endif %}
+
 
 {% if transaction_count_plot %}
     <h2>Number of Transactions Over Time:</h2>
